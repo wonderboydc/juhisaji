@@ -65,10 +65,25 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
+                // Tracking section navigation
+                if (window.va) {
+                    window.va('event', { name: 'section_navigation', data: { target: targetId } });
+                }
+
                 targetElement.scrollIntoView({
                     behavior: 'smooth'
                 });
             }
         });
     });
+
+    // 4. LinkedIn Click Tracking
+    const linkedinBtn = document.querySelector('a[href*="linkedin.com"]');
+    if (linkedinBtn) {
+        linkedinBtn.addEventListener('click', () => {
+            if (window.va) {
+                window.va('event', { name: 'linkedin_click' });
+            }
+        });
+    }
 });
